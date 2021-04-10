@@ -36,4 +36,4 @@
 這不是一篇採訪文，我就憑我今天聽到看到的下點心得，明明一週前知悉演講主題卻沒有事前做功課，我深知對演講者很失禮，「蛤？什麼！台灣魔術師我只知道劉謙」，柏翰演講實實在在呈現了他就是個追逐夢想的小男孩（沒有一絲絲改變～），謙卑有自信。這裡也不比較其他演講者，實在我也沒有口袋名單（？），90分鐘，受用良多。
 
 
-<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpohanmagic%2Fposts%2F1784400061737922&width=500&show_text=true&height=732&appId" width="500" height="732" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+[FB貼文：魔術師黃柏翰-奇幻製造 POHAN MAGIC -Wonder Studio](https://www.facebook.com/pohanmagic/posts/1784400061737922)
