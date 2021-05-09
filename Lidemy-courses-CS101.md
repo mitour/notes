@@ -48,3 +48,24 @@
     ![程式碼](https://i.imgur.com/U5jIi0J.png)
 
     延伸閱讀：[淺談 JS sort() 到背後排序方法](https://medium.com/@leokao0726/%E6%B7%BA%E8%AB%87-js-sort-%E5%88%B0%E8%83%8C%E5%BE%8C%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95-1035f5b8cde8)
+    
+* command line
+    * pwd我在哪
+    * ls
+    * cs 
+        * .. 上一層
+        * . 本層
+        * ~ 使用者home目錄
+        * / 根目錄
+    * touch
+    * mkdir
+    * rm
+    * rmdir
+    * cp file copyfile
+    * mv
+        * 移動
+        * 重新命名
+    * man
+        * q 離開
+    * homework:
+    ![homework](https://i.imgur.com/EygNoEI.png)
