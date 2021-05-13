@@ -72,3 +72,10 @@
         * q 離開
     * homework:
     ![homework](https://i.imgur.com/EygNoEI.png)
+    * date
+    * top (table of processes):印出全部工作
+    * cat (catenate)連接檔案/印出檔案內容
+    * less 新視窗顯示檔案內容
+    * grep 抓取檔案關鍵字
+        * grep if test.js
+    * echo 印出字串
