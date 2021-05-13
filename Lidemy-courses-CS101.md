@@ -79,3 +79,8 @@
     * grep 抓取檔案關鍵字
         * grep if test.js
     * echo 印出字串
+    * command-line 組合技
+        * |(pipe)
+            * cat file.txt | grep hi
+        * \>(redirect)
+            * date > time.txt
