@@ -193,3 +193,16 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 * 木馬程式：等於在你的電腦裡開了一個後門，駭客可以裝鍵盤側錄器紀錄帳號密碼、用你的電腦當跳板、DDoS
 * 暴力破解：一直試
   * 字典檔，常見密碼組合
+
+## 資料庫簡介
+
+### Structured Query Language
+
+* 查詢
+  * **SELECT** phone **FROM** users **WHERE** name=peter
+* 刪除
+  * **DELETE FROM** users **WHERE** name=peter
+* 更新
+  * **UPDATE** users **SET** phone=123 **WHERE** name=peter
+* 新增
+  * **INSERT INTO** users(name,phone) **VALUES** (peter, 1234)
