@@ -155,3 +155,33 @@
 將每一小數寫成固定格式：0.00000853 = 0.853 * 10^(-5)
 
 [延伸閱讀-使用浮點數最最基本的觀念](http://blog.dcview.com/article.php?a=VmhQNVY%2BCzo%3D)
+
+## 網路基礎概論
+
+* IP：由四個 0~255 數字組成，例如：203.211.0.39
+* 域名：比 IP 好記，例如：google.com
+* DNS(Domain name system)：就像是電話簿，紀錄 IP 對照到域名
+  * 8.8.8.8 由 google 提供的免費 DNS，亦可同時搜集使用者愛好
+* 前端後端
+![前端後端](https://i.imgur.com/AExaGWW.jpg)
+
+## 內網與外網
+
+從外部看，大家的 IP 都一樣，從內部看有虛擬 IP 區分
+![內網與外網](https://i.imgur.com/Q3Ny1fi.png)
+
+### VPN
+
+![VPN](https://i.imgur.com/q6Kblkd.png)
+
+## session 與 cookie
+
+session id 就是一張有期限的識別證，只認識別證，不認人
+![登入流程](https://i.imgur.com/276z88H.jpg)
+
+## 了解瀏覽器
+
+* HTML 是框架、身體，CSS 是外觀、衣服，JavaScript 則是程式與互動
+* 瀏覽器：把 HTML, CSS, JavaScript 解析成網頁
+* HTML 都一樣，但 CSS 不同 [CSS 之美](http://www.csszengarden.com/)
+* 實際看看：開發人員工具 > network > cookie
