@@ -185,3 +185,11 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 * 瀏覽器：把 HTML, CSS, JavaScript 解析成網頁
 * HTML 都一樣，但 CSS 不同 [CSS 之美](http://www.csszengarden.com/)
 * 實際看看：開發人員工具 > network > cookie
+
+## 資訊安全
+
+* DoS：有人一直發 request 讓伺服器沒辦法處理別人的 request
+* DDoS：有很多人一直發 request，通常會用木馬程式
+* 木馬程式：等於在你的電腦裡開了一個後門，駭客可以裝鍵盤側錄器紀錄帳號密碼、用你的電腦當跳板、DDoS
+* 暴力破解：一直試
+  * 字典檔，常見密碼組合
