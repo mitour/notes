@@ -218,3 +218,26 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 * 加鹽(salting)：自動幫密碼加上一段亂數後才進行 md5 加密，確保不易被破解。
 * SHA256：較 md5 更安全的雜湊函數，但也較慢。
 * [線上加密/破解密碼](https://www.cmd5.com/)
+
+## 其他常見攻擊手法
+
+### 讓輸入變成程式碼的一部分
+
+* SQL injection
+![SQL injection](https://i.imgur.com/iOQin9L.jpg)
+* XSS(cross site scripting)：運用 HTML Tag (像是`<script>`)讓其他使用者傳輸敏感資料給攻擊者
+  * 小遊戲：[XSS-game](https://xss-game.appspot.com/)
+
+### 解法：過濾使用者輸入
+
+> 請千萬不要嘗試建立黑名單過濾，你可以參觀 [XSS Cheat Sheet](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet) 這個網站，就會知道有非常多形式可以讓瀏覽器去執行腳本程式。因此最簡單又保險的方式，就是全部逸出。例如將`<script>`變成`&lt;script&gt;`
+> —— [Rails 實戰聖經](https://ihower.tw/rails/security.html#sec0)
+
+* 前後端都做資料欄位過濾
+  * 前端：沒必要傳送無意義請求
+  * 後端：**一定要過濾**，有些工具可以跨過前端，畢竟前端 code 是公開可見的
+
+## 參考
+
+[[偷米騎巴哥]帶你認識XSS攻擊手法](https://www.youtube.com/watch?v=MMMkvHwqPRY)
+{%youtube MMMkvHwqPRY %}
