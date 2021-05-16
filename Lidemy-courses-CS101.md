@@ -330,3 +330,9 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 3. 把 n = n+1
 4. 如果 swapped = true，重複步驟 1
 5. 結束
+
+## Scratch
+
+![Scratch](https://i.imgur.com/LbKBJtb.png)
+
+[均一教育平台-Scratch玩程式](https://www.junyiacademy.org/computing/programming/scratch)
