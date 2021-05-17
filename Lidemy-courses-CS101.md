@@ -387,3 +387,22 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 1. open API：公開免費
 2. internal API：公司內部
 3. partner API：合作、付費
+
+## 實戰篇
+
+> 程式不是重點，解決問題才是重點
+
+### 抓取網頁標題
+
+### 判斷水仙花數
+
+## 總結
+
+* input
+* conditional
+* loop
+* variable
+* function
+* output
+
+![step](https://i.imgur.com/9REYZis.jpg)
