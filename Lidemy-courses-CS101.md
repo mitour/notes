@@ -336,3 +336,54 @@ session id 就是一張有期限的識別證，只認識別證，不認人
 ![Scratch](https://i.imgur.com/LbKBJtb.png)
 
 [均一教育平台-Scratch玩程式](https://www.junyiacademy.org/computing/programming/scratch)
+
+## Web development
+
+### 前端
+
+* HTML
+* CSS
+* JavaScript
+
+### 後端
+
+* Server side
+  * 實體主機
+  * 雲端主機
+* database
+
+#### 題外話：port/連接阜/接口
+
+[[30 天學會 Web 前端效能優化] 2. 傳輸層簡述](https://ithelp.ithome.com.tw/articles/10155707)
+
+* port：同一 IP 底下的不同服務，以 port 區分
+  * localhost：本機端
+  * 127.0.0.1：本機端
+  * http 預設 port 80
+  * https 預設 port 443
+
+## APP development
+
+### Android, iOS
+
+### IDE (Integrated Development Environment)
+
+協助開發方便的**整合開發環境**：結合檔案總管、文字編輯、效能監察、模擬器...
+
+### API(Application Programming Interface)
+
+[API? IPA? 應用程式介面是什麼? API種類介紹](https://www.youtube.com/watch?v=xQULsD-r3mo)
+{%youtube xQULsD-r3mo %}
+
+取用別人寫好的功能，不用自己刻出來，節省開發時間、精力，例如 Google Map、指紋辨識、信用卡驗證...
+
+#### 常用於
+
+* API can control access to resources 索要權限
+* API is used for communication between services 軟體間橋樑
+
+#### 依公開性分類
+
+1. open API：公開免費
+2. internal API：公司內部
+3. partner API：合作、付費
