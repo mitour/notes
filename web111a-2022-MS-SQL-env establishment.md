@@ -33,6 +33,11 @@
 
 可以將應用程式快速地部署到各種環境並加以擴展，而且知道程式碼可以執行。
 
+Docker 包括三個基本概念：[Docker——從入門到實踐](https://philipzheng.gitbook.io/docker_practice/)
+* 映像檔（Image）
+* 容器（Container）
+* 倉庫（Repository）
+
 > Docker 想解決的問題：
 > 改善傳統虛擬機器因為需要額外安裝作業系統（Guest OS），導致啟動慢、佔較大記憶體的問題
 >  
@@ -40,18 +45,53 @@
 > 以應用程式為核心虛擬化，取代傳統需要 Guest OS 的虛擬化技術
 > [from Docker 使用教學](https://cwhu.medium.com/docker-tutorial-101-c3808b899ac6)
 
-#### Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+##### Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
 
 [[解決方法] mac 作業系統上無法使用 docker](http://andy51002000.blogspot.com/2021/02/mac-docker.html)
 
 :::info
-測試不可行，似乎目前版本存在 bug...
+~~測試不可行，似乎目前版本存在 bug...~~
 
 ```bash=
 This is a known VirtualBox bug. Let's try to recover anyway...
 Error creating machine: Error in driver during machine creation: Error setting up host only network on machine start: The host-only adapter we just created is not visible. This is a well known VirtualBox bug. You might want to uninstall it and reinstall at least version 5.0.12 that is is supposed to fix this issue
 ```
 :::
+
+:warning:3/23更新：
+雖然不太理解原因，但改安裝 [docker desktop](https://www.docker.com/products/docker-desktop/)，又可行了，個人推測是sudo
+
+##### Pull Image
+
+```bash=
+sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
+```
+
+##### Run the container
+
+透過容器，應用程式不需要再另外安裝作業系統（Guest OS）也可以執行。
+
+```bash=
+docker run -d --name sql_server_demo -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<PASSWORD>' -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
+```
+
+##### sql-cli
+
+* npm（全稱 Node Package Manager，即「node套件管理器」）是Node.js預設的、用JavaScript編寫的軟體套件管理系統。
+
+```bash=
+npm install -g sql-cli
+```
+
+##### connect to SQL server
+
+```bash=
+mssql -u sa -p <PASSWORD>
+```
+
+##### 參考影片
+
+{%youtube glxE7w4D8v8 %}
 
 ## SSMS
 
@@ -68,6 +108,16 @@ Error creating machine: Error in driver during machine creation: Error setting u
 3. 允許 sqlbrowser.exe
 4. 允許 ssms.exe
 5. 設定網路組態
+
+### for Mac
+
+> 在 SSMS 沒有支援 Mac 的情況下，我們可以微軟開發的 Azure Data Studio 進行連結。
+
+```bash=
+brew cask install azure-data-studio
+```
+
+* 中文介面：cmd+shift+P，輸入 configure display language
 
 ## 資料庫操作
 
