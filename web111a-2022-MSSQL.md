@@ -866,7 +866,7 @@ FROM bas_place
 ### 時機
 
 1. Trigger 觸發程式
-2. Store Procedure 預儲程序
+2. Stored Procedure 預儲程序
 3. Function 使用者自定義函數
 
 ### 用 Trigger 觸發程式實作小計
@@ -1027,3 +1027,138 @@ END
   * `CAST`(<資料> `AS` <型態>)
 * `REPLICATE`(<數值>, <重複次數>)
 * `RIGHT`(<資料>, <位數>)
+
+---
+
+* 時間：2022/4/14
+
+### 關於小計後的誤差
+
+* 四捨五入的時機，小計前？小計後？
+
+### 用 Trggier 實作表頭變動
+
+* 目的：明細更動時，表頭未稅金額、稅額、含稅金額跟著變動
+* 原理：只要明細有更動，明細小計直接重新計算
+
+#### 未稅金額計算
+
+:::info
+留意表頭 amounts 型別為`int`
+:::
+
+![未稅金額計算](https://i.imgur.com/QAJFGOO.png)
+
+#### 稅額計算
+
+##### 寫在哪？明細？表頭？
+
+* 發生在誰身上就寫在誰身上
+  * 明細只負責將未稅金額丟給表頭
+* 連動 Trigger：明細有變動>表頭未稅金額變動>表頭稅額變動
+
+:::info
+稅別：O(外加稅)、I(內含稅)、Z(零稅率)，預設為O
+:::
+
+##### 完整程式碼
+
+![稅額計算](https://i.imgur.com/88UFQsO.png)
+
+### 優化（重構）
+
+* 重複程式碼
+
+### 函數
+
+將**通用型的程式**拉出寫成函數，例如：進貨單要算稅額，採購單也需要算，故將**計算稅額**拉成函數
+
+* 可程式性>函數>
+  * 依回傳值區分
+    * 回傳 table：資料表函數
+    * 回傳值：純量值函數
+* 函數請記得加上描述
+
+:::info
+
+* 如果不回傳，就是 Stored Procedure 預存程序
+* 可程式性>預存程序
+
+:::
+
+#### 起手式
+
+```sql=
+CREATE FUNCTION fn_get_tax_total
+(
+-- 傳入參數
+)
+RETURNS <型別>
+AS
+BEGIN
+
+-- your code goes here
+
+END
+```
+
+:::info
+
+* 呼叫函數需連名帶姓(dbo.fn_get_tax_total)
+* 初次建立函數呼叫時會出現紅蚯蚓實屬正常
+
+:::
+
+#### 呼叫函式
+
+```sql=
+SET @taxs = dbo.fn_get_tax_total(@tax_code, @amounts, 'X')
+```
+
+#### 完整程式碼
+
+![call function](https://i.imgur.com/E4vda1Q.png)
+
+![function](https://i.imgur.com/Jrv7NUh.png)
+
+### 練習：表單金額管理及金額統計
+
+:::danger
+下週二4/19講解
+:::
+
+### Stored Procedure 預存程序
+
+* 沒有回傳值的函式
+* 練習將表頭自動編號改寫
+
+#### 起手式
+
+```sql=
+CREATE PROCEDURE sp_sale_no_autono
+-- params 可有可無
+AS
+-- 沒有回傳值
+BEGIN
+  SET NOCOUNT ON; -- 寫任何程式碼不要回傳東西
+  
+  -- your code goes here
+
+END
+GO
+```
+
+:::info
+撈不到暫存區(Buffer)可以直接去資料表取值
+:::
+
+#### 執行 Stored Procedure
+
+```sql=
+EXEC dbo.sp_sale_no_autono [param1], [param2]
+```
+
+### 補充
+
+[後端基礎：資料庫補充 View、Stored Procedure 與 Trigger
+](https://hugh-program-learning-diary-js.medium.com/%E5%BE%8C%E7%AB%AF%E5%9F%BA%E7%A4%8E-%E8%B3%87%E6%96%99%E5%BA%AB%E8%A3%9C%E5%85%85-view-stored-procedure-%E8%88%87-trigger-8dbcbf5946a9)
