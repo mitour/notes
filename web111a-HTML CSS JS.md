@@ -198,13 +198,148 @@ echo "# reponame" >> README.md
    1. 預設開機 SATA 埠為 0
 3. win10 登入方式：本機
 4. 建立使用者帳戶
+5. 記得把開機順序調回來
+
+### 初始設定
+
+#### 建立D槽
+
+1. 開機前：存放裝置>建立虛擬硬碟
+2. 開機後：電腦管理>存放裝置>磁碟管理>初始化D槽
+
+#### Guest Additions
+
+> VirtualBox Guest Additions are a collection of device drivers and system applications designed to achieve closer integration between the host and guest operating systems. They help to enhance the overall interactive performance and usability of guest systems.
+
+1. 裝置>掛載 Guest Additions
+2. 重新開機後就可以調整畫面解析度
+3. 之後就可以卸載 Guest Additions 囉
+
+#### 建立虛擬機與本機共享
+
+* 裝置>共用資料夾>:ballot_box_with_check:自動掛載、:ballot_box_with_check:永久
+* 裝置>共用剪貼簿>雙向
+* 裝置>拖放>雙向
+
+#### 網路卡
+
+* bridge 橋接介面卡
+  * 在本機端幫虛擬機接上網卡：
+    1. 網際網路設定
+    1. 變更介面卡選項
+    1. 乙太網路2
+    1. 內容
+    1. 安裝
+    1. 服務
+    1. 新增
+    1. 從磁片安裝
+    1. 虛擬主機目錄下
+       1. drivers
+       1. network
+       1. netlwf
+       1. (.inf)
+  * 之後可以看到 VitrtualBox NDIS6 Bridged Networking Driver 被安裝好囉
+  * 虛擬機>裝置>網路>介面卡
+* 查詢虛擬機 IP
+
+### 本機端用 SSH 登入虛擬機
+
+:::info
+需將 Windows 更新
+:::
+
+* 設定>應用程式>選用功能
+  * OpenSSH 用戶端(預設安裝)
+  * OpenSSH 伺服器(需手動安裝)
+* 服務>設為自動並啟用
+  * OpenSSH Authentication Agent
+  * OpenSSH Server
+* 連線
+
+  ```shell=
+  ssh <username>@<host ip>
+  # 例如本例 ssh web111a@127.0.0.1
+  ```
+
+* 查詢通訊埠(預設開啟)，有在監聽(TCP/IP)才能用SSH連線
+
+  ```shell=
+  netstat -an | findstr :22
+  ```
+
+* 防火牆(預設開啟)
+
+#### 設定免密碼連線
+
+設定檔位置：C:/ProgramData/ssh/sshd.config
+
+可以用免密碼連線(預設開啟)，如有註解需拿掉
+
+```shell=
+AuthorizeKeyFile .ssh/authorized_keys
+```
+
+讓管理員可以連線，將最下面兩行註解
+
+```shell=
+# Match Group administrators
+#         AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
+```
+
+:::warning
+因為教室電腦將`user`改成`web111a`的，ssh登入時會找不到，他會找預設的`user`
+
+* 控制台>系統管理工具>電腦管理>`web111a`改回`user`
+  * 使用者名稱
+  * 全名
+  * 密碼
+* 新增`web111a`使用者
+  * 群組加入`administrator`
+:::
+
+#### add key
+
+將本機公鑰(.pub)加到虛擬機(authorized_keys)
+
+#### 主機別名
+
+在`.ssh`底下建立`config`
+
+```shell=
+Host allen
+Hostname 127.0.0.1
+Port 22
+User allen
+identityfile ~/.ssh/id_rsa_allen
+```
+
+登入
+
+```shell=
+ssh allen
+```
+
+#### 補充說明：nano
+
+* Linux 文字編輯器
+* 放在 D:/tools/nano
+* 記得加環境變數
+
+#### 補充說明：遠端複製
+
+```shell=
+scp <filename> -r[recursive] <username>@<host>:<filepath>
+# 本例 scp id_rsa.pub web111a@127.0.0.1:~/.ssh/authorized_keys
+```
 
 ## 上課影片
 
-### 4/12 環境建置與虛擬主機架設
+### 4/12 環境建置與虛擬主機架設（直播）
 
 {%youtube kntn6ZsPy4c %}
 
-### 4/13 環境建置與虛擬主機架設
+### 4/13 環境建置與虛擬主機架設（直播）
 
 {%youtube eGET6v_Cu1M %}
+
+### 4/15 後影片參照[老師 YT](https://www.youtube.com/channel/UC6c3un6c2FyZrLr0cAuG9LQ)
