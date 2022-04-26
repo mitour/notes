@@ -749,3 +749,121 @@ if(int.TryParse(Console.ReadLine(), out input)) {
 [實際應用](https://github.com/mitour/web111a_crouse_demo/blob/main/Workflow/While/Program.cs#L14)
 
 #### try/catch
+
+---
+
+* 時間：2022/4/18 下午
+* 老師：洪福成（代課）
+
+## C# 練習題
+
+### 九九乘法
+
+### 三角形
+
+#### 直角三角
+
+* 正序（由小到大）
+* 倒序（由大到小）：固定數-i
+
+```csharp=
+for (i = 1; i <= n; i++)
+{
+    for (j = 1; j <= n - i + 1; j++)
+    {
+        Console.Write($"X{t}");
+    }
+    Console.WriteLine();
+}
+```
+
+#### 正三角
+
+先倒序三角形印空白，在正序三角形
+
+```csharp=
+for (i = 1; i <= n; i++)
+{
+    for (j = 1; j <= n - i; j++) Console.Write(t);
+    for (k = 1; k <= i; k++) Console.Write(s+t);
+    Console.WriteLine("");
+}
+```
+
+#### 倒三角
+
+```csharp=
+for (i = 1; i <= n; i++)
+{
+    for (j = 1; j <= i - 1; j++) Console.Write(t);
+    for (k = 1; k <= n - i + 1; k++) Console.Write(s+t);
+    Console.WriteLine("");
+}
+```
+
+### 菱形
+
+#### 兩個`for`
+
+先印邊長正三角形、在印邊長-1倒三角形
+
+```csharp=
+...
+for (i = 1; i <= n; i++)
+{
+  for (j = 1; j <= n - i; j++) Console.Write(" ");
+  for (k = 1; k <= i; k++) Console.Write("* ");
+  Console.WriteLine("");
+}
+for (i = 1; i <= n; i++)
+{
+  for (j = 1; j <= i; j++) Console.Write(" ");
+  for (k = 1; k <= n - i; k++) Console.Write("* ");
+  Console.WriteLine("");
+}
+```
+
+output:
+
+```shell=
+請輸入邊長：4
+請輸入要畫的圖形：(1)正三角、(2)倒三角、(3)菱形：3
+   * 
+  * * 
+ * * * 
+* * * * 
+ * * * 
+  * * 
+   * 
+```
+
+#### 一個`for`
+
+`k`：定位、`x`：每行的*數
+
+```csharp=
+for (i = 1; i <= 2 * n - 1; i++)
+{
+    for (j = 1; j <= 2 * n - 1; j++)
+    {
+        // k = 5, 4, 3, 2, 1, 2, 3, 4, 5...
+        k = i <= n ? n - i + 1 : i - n + 1;
+        if (j >= k && j < k + x)
+        {
+            Console.Write(s);
+        }
+        else
+        {
+            Console.Write(t);
+        }
+    }
+    // x = 1,3,5,7,9,7,5,3,1
+    x = i < n ? x + 2 : x - 2;
+    Console.WriteLine();
+}
+```
+
+### 課外練習：空心菱形
+
+* 用空白推擠
+* 畫布定位式
