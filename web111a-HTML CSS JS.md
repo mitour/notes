@@ -332,6 +332,236 @@ scp <filename> -r[recursive] <username>@<host>:<filepath>
 # 本例 scp id_rsa.pub web111a@127.0.0.1:~/.ssh/authorized_keys
 ```
 
+## 驗收：SSH 連線及 XAMPP
+
+:::info
+4/18 驗收
+:::
+
+1. SSH 連線
+   1. 設定免密碼
+   2. config
+2. XAMPP
+   1. PORT
+   2. 路徑設定
+   3. IP 設定
+
+---
+
+* 上課日期：2022/4/18
+
+## VS Code extension
+
+:::info
+`settings.json` 參考老師提供
+:::
+
+1. prettier
+2. Vrtur
+3. PHP
+   1. PHP debug
+   2. Intelelphense
+   3. IntelliSence
+   4. Format HTML in PHP
+4. eslint
+5. Auto rename tag
+6. Auto complete tag
+7. Live Server
+8. HTML CSS SUPPORT
+9. Preview on Web Server
+10. [deprecated]bracket pair colorizer 2
+
+### 確認路徑
+
+1. PHP
+2. Cmder
+3. Composer
+4. Git
+
+---
+
+* 上課時間：2022/4/26
+
+## HTML
+
+### 編輯器
+
+* VSCode（本課使用）
+* Sublime
+* phpStorm
+
+### DOM 樹
+
+> DOM 全名為 Document Object Model 中文翻譯為 文件物件模型，看起來很抽象但其實就是把一份 HTML 文件內的各個標籤，包括文字、圖片等等都定義成物件，而這些物件最終會形成一個樹狀結構，下面有一張示意圖可以參考。
+
+![html dom](https://i.imgur.com/uY3tt2Z.png)
+
+### 簡介
+
+* 單標籤
+  * `<meta>`
+* 雙標籤
+  * `<html></html>`
+  * `<body></body>`
+* 行內元素：寬高依元素內容所訂
+* 區塊元素：寬度將會佔用整行
+
+### Emmet
+
+* 幫助快速寫扣:+1:
+* VSCode有內建，其他編輯器可能需要自己裝套件。
+* [快速生成 HTML！Emmet 語法大公開！](https://5xruby.tw/posts/emmet-skills-html)
+
+#### 起手式
+
+試試看打`!`之後按下`Tab`吧
+
+```htmlembedded=
+<!DOCTYPE html>             <!-- 宣告html5 -->
+<html lang="en" dir="ltr">  <!-- 語系、由左至右讀 -->
+  <head>
+    <meta charset="utf-8">  <!-- 編碼 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!-- IE相容 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" >  <!-- 不同裝置螢幕解析度 -->
+    <title></title>
+  </head>
+  <body>
+    
+  </body>
+</html>
+```
+
+### 註解
+
+`<!-- meow -->`
+
+### 假文產生器
+
+* 英文：Lorem
+* 簡體中文：clorem（需自行安裝套件）
+* 繁體中文：Chinese lorem（需自行安裝套件）
+
+### 假圖產生器
+
+* [unsplash](https://source.unsplash.com/random/600x400)
+* [fakeimg](https://fakeimg.pl/600x400/)
+* placeholder套件
+
+### 項目
+
+* 無序`ul`、內文`li`
+* 有序`ol`、內文`li`
+
+### Box model
+
+:::info
+瀏覽器有預設的屬性
+
+![default stylesheet](https://i.imgur.com/DOgTh6d.png)
+
+:::
+
+* padding 對內
+* border 邊線
+* margin 對外
+
+### table
+
+`<tr>`、`<td>`
+
+因為 HTML5 之後會讓標籤有「語意」，因此多了以下標籤：
+
+`<thead>`、`<tbody>`、`<tfoot>`
+
+```htmlembedded=
+<table>
+ <thead>
+  <tr>
+    <th>日期(月)</th>
+    <th>數量</th>
+    <th>單價</th>
+    <th>金額</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr>
+    <td>2013/1</td>
+    <td>1</td>
+    <td>2</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>2013/2</td>
+    <td>2</td>
+    <td>2</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>2013/3</td>
+    <td>3</td>
+    <td>2</td>
+    <td>6</td>
+  </tr>
+ </tbody>
+ <tfoot>
+  <tr>
+    <td>小計</td>
+    <td>6</td>
+    <td>2</td>
+    <td>12</td>
+  </tr>
+ </tfoot>
+</table>
+```
+
+輸出
+
+![table output](https://i.imgur.com/dJvdMGU.png)
+
+### 上傳到伺服器
+
+透過VSCode套件，可以參考[VS Code 關於SFTP上傳檔案到多伺服器的配置](https://www.itread01.com/iqeeq.html)
+
+* SFTP(Natuzyskunk)
+* Remote FS(liximomo)
+
+Settings.json
+
+```json=
+"remotefs.remote": {
+  "vm": {
+  "scheme": "sftp",
+  "host": "<vm ip>",
+  "username": "web111a",
+  /*
+  Windows:
+  "privateKeyPath": "c:/Users/web111a/.ssh/id_rsa",
+  */
+  "privateKeyPath": "~/.ssh/id_rsa_vm",
+  /* 本機檔案根目錄路徑 */
+  "rootPath": "d:/htdocs/www/web111a"
+  }
+}
+```
+
+sftp.json
+
+```json=
+{
+  "name": "vm",
+  "remote": "vm",
+  "remotePath": "/path/to/remoteserver",
+  "openSsh": true,
+  "protocol": "sftp","uploadOnSave": true,
+  "ignore": [".vscode", ".git", ".DS_Store"]
+}
+```
+
+#### 補充
+
+* For ATOM: [atom-sftp-sync](https://atom.io/packages/atom-sftp-sync)
+* [SFTP是什麼？與FTP之間有什麼區別](https://kknews.cc/zh-tw/code/rojyjqx.html)
+
 ## 上課影片
 
 ### 4/12 環境建置與虛擬主機架設（直播）
